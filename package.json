@@ -1,0 +1,35 @@
+{
+  "name": "rx-flowable",
+  "version": "0.1.0",
+  "description": "RxJS observables with back-pressure",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && jest && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "prepublishOnly": "npm run build && npm version $VERSION && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsvarovsky/rx-flowable.git"
+  },
+  "keywords": [],
+  "author": "George Svarovsky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gsvarovsky/rx-flowable/issues"
+  },
+  "homepage": "https://github.com/gsvarovsky/rx-flowable#readme",
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "jest": "^27.4.7",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "rxjs": "^7.5.1"
+  }
+}
