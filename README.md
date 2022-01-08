@@ -1,4 +1,5 @@
 ![build](https://github.com/gsvarovsky/rx-flowable/actions/workflows/node.js.yml/badge.svg)
+![npm](https://img.shields.io/npm/v/rx-flowable)
 ![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
 
 # rx-flowable
