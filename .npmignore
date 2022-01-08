@@ -1,0 +1,8 @@
+.vscode/
+.idea/
+.github/
+src/
+test/
+tsconfig.json
+tsconfig-esm.json
+jest.config.js

@@ -1,6 +1,6 @@
 import { OperatorFunction } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { Bite } from '../index';
+import { Bite } from '..';
 
 /**
  * Consumable (inverse) flavour of `filter` which calls {@link Bite.next()}

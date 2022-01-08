@@ -1,5 +1,5 @@
 import { IteratingConsumable } from './IteratingConsumable';
-import { Consumable } from '../index';
+import { Consumable } from '..';
 
 /**
  * Minimal readable interface required for ReadableConsumable

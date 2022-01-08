@@ -1,6 +1,7 @@
 import { BehaviorSubject, concatAll, Observable } from 'rxjs';
 import { map, share } from 'rxjs/operators';
-import { Bite, isFlowable } from '../index';
+import { Bite } from '..';
+import { isFlowable } from '../functions/flow';
 
 export function consume<T>(source: Observable<T>) {
   return isFlowable<T>(source) ? source.consume : bufferObservable(source);

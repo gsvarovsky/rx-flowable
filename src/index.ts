@@ -1,4 +1,4 @@
-import { Observable, Subscriber, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 /**
  * A consumable is an observable that is
@@ -20,31 +20,6 @@ import { Observable, Subscriber, Subscription } from 'rxjs';
 export interface Consumable<T> extends Observable<Bite<T>> {
   /** @deprecated use {@link each} */
   forEach(next: (value: Bite<T>) => void): Promise<void>;
-}
-
-/**
- * Replacement for {@link Observable.forEach}, which consumes each item one-by-one
- * @param consumable the consumable to consume
- * @param handle a handler for each item consumed
- */
-export function each<T>(
-  consumable: Consumable<T>, handle: (value: T) => any): Promise<void> {
-  return new Promise<void>((resolve, reject) => {
-    let subscription: Subscription;
-    subscription = consumable.subscribe({
-      next: async ({ value, next }) => {
-        try {
-          await handle(value);
-          next();
-        } catch (err) {
-          reject(err);
-          subscription?.unsubscribe();
-        }
-      },
-      error: reject,
-      complete: resolve
-    });
-  });
 }
 
 /**
@@ -84,39 +59,4 @@ export interface Flowable<T> extends Observable<T> {
   readonly consume: Consumable<T>;
 }
 
-/**
- * Duck-typing an observable to see if it supports backpressure.
- */
-export function isFlowable<T>(observable: Observable<T>): observable is Flowable<T> {
-  return 'consume' in observable;
-}
-
-/**
- * Creates a flowable from some source consumable.
- */
-export function flowable<T>(source: Consumable<T>): Flowable<T> {
-  return new class extends Observable<T> implements Flowable<T> {
-    readonly consume = source;
-    constructor() {
-      /* The observable (push) world just calls done for every item.
-      Since the consumable flows at the pace of the slowest consumer,
-      a subscriber to the source consumable will delay items. */
-      super(subs => flow(source, subs));
-    }
-  }();
-}
-
-/**
- * Flows the given consumable to the subscriber with no back-pressure.
- * @see Flowable
- */
-export function flow<T>(consumable: Consumable<T>, subs: Subscriber<T>) {
-  return consumable.subscribe({
-    next({ value, next }) {
-      subs.next(value);
-      next();
-    },
-    complete: () => subs.complete(),
-    error: err => subs.error(err)
-  });
-}
+export * from './functions';

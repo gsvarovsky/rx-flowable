@@ -1,5 +1,5 @@
 import { IteratingConsumable } from './IteratingConsumable';
-import { Consumable } from '../index';
+import { Consumable } from '..';
 
 export function consume<T>(promise: Promise<T>): Consumable<T> {
   return new PromiseConsumable(promise);

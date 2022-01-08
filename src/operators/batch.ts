@@ -1,6 +1,6 @@
 import { concatMap, OperatorFunction, pipe, reduce, windowCount } from 'rxjs';
 import { ignoreIf } from './ignoreIf';
-import { Bite } from '../index';
+import { Bite } from '..';
 
 export function batch<T>(size: number): OperatorFunction<Bite<T>, Bite<T[]>> {
   return pipe(

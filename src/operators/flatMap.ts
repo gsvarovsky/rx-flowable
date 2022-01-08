@@ -1,8 +1,8 @@
 import { concatMap, OperatorFunction, tap } from 'rxjs';
-import { Bite, Consumable } from '../index';
+import { Bite, Consumable } from '..';
 
 /**
- * Consumable flavour of merge/concat mapping – always concatenates.
+ * Consumable flavour of concat mapping.
  */
 export function flatMap<T, R>(
   project: (value: T) => Consumable<R>): OperatorFunction<Bite<T>, Bite<R>> {

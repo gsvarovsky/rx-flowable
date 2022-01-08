@@ -1,5 +1,5 @@
 import { Observable, Subscriber } from 'rxjs';
-import { Bite, Consumable } from '../index';
+import { Bite, Consumable } from '..';
 
 export abstract class IteratingConsumable<T> extends Observable<Bite<T>> implements Consumable<T> {
   /** Can be sparse when subscribers unsubscribe */

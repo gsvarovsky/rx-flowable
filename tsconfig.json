@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "target": "es2016",
-    "module": "es2020",
+    "module": "CommonJS",
     "moduleResolution": "Node",
     "esModuleInterop": true,
-    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "outDir": "./dist/esm"
+    "declaration": true,
+    "outDir": "./cjs"
   },
   "include": [
     "./src"

@@ -1,13 +1,12 @@
 import { Readable } from 'stream';
 import { EventEmitter } from 'events';
 import { from, merge, Subscription } from 'rxjs';
-import { drain } from '../src/drain';
-import { flatMap } from '../src/operators/flatMap';
-import { batch } from '../src/operators/batch';
+import { drain } from '../src';
+import { batch, flatMap } from '../src/operators';
 import { consume } from '../src/consume';
 import { MinimalReadable } from '../src/consume/readable';
 import { mergeMap } from 'rxjs/operators';
-import { Bite } from '../src';
+import { Bite } from '../src/index';
 
 const readArrayAsync = (data: any[]) => new Readable({
   objectMode: true,

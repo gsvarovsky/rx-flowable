@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Consumable } from '../index';
+import { Consumable } from '..';
 import { consume as consumeReadable, MinimalReadable } from './readable';
 import { consume as consumeObservable } from './observable';
 import { consume as consumeIterable } from './iterable';
