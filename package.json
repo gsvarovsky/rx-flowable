@@ -1,6 +1,6 @@
 {
   "name": "rx-flowable",
-  "version": "0.1.0",
+  "version": "0.1.1-0",
   "description": "RxJS observables with back-pressure",
   "main": "./index.js",
   "module": "./esm/index.js",
