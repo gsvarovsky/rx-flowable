@@ -47,7 +47,9 @@ jspm_packages/
 # TypeScript v1 declaration files
 typings/
 
-# Typescript compiler output to root
+# Typescript compiler output
+esm/
+# CommonJS files are output to root for typescript dependents
 *.d.ts
 *.js
 !/src/*.d.ts
