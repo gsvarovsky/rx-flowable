@@ -6,7 +6,7 @@ import { batch, flatMap } from '../src/operators';
 import { consume } from '../src/consume';
 import { MinimalReadable } from '../src/consume/readable';
 import { mergeMap } from 'rxjs/operators';
-import { Bite } from '../src/index';
+import { Bite, each } from '../src/index';
 
 const readArrayAsync = (data: any[]) => new Readable({
   objectMode: true,
@@ -307,6 +307,16 @@ describe('Utilities', () => {
   test('batch insufficient', async () => {
     const rc = consume([0]).pipe(batch(2));
     await expect(drain(rc)).resolves.toEqual([[0]]);
+  });
+
+  test('batch insufficient does not complete early', async () => {
+    const rc = consume([0, 1, 2]).pipe(batch(10));
+    let values: number[] = [];
+    await each(rc, async vs => {
+      await new Promise(resolve => setTimeout(resolve, 1));
+      values = vs;
+    });
+    expect(values).toEqual([0, 1, 2]);
   });
 
   test('batch irregular', async () => {
